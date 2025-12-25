@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des dons</title>
+
+    <style>
+        .ko {
+            color: red;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+
+        .ok {
+            color: green;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+
+<body>
+
+<h2>Liste des dons</h2>
+
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Donateur</th>
+        <th>Montant</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="d : ${dons}">
+        <td th:text="${d.id}"></td>
+        <td th:text="${d.donateur.nom}"></td>
+        <td th:text="${d.montant} + ' DH'"></td>
+    </tr>
+    </tbody>
+</table>
+
+<br>
+
+<div class="total">
+    Total des dons :
+    <strong th:text="${totalMontantAction} + ' DH'"></strong>
+</div>
+
+<div th:if="${totalMontantAction < action.montantobj}" class="ko">
+    Objectif non atteint
+    (Objectif :
+    <span th:text="${action.montantobj}"></span> DH)
+</div>
+
+<div th:if="${totalMontantAction >= action.montantobj}" class="ok">
+    Objectif atteint
+</div>
+
+<br>
+<a th:href="@{/add}">← Retour</a>
+
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajouter une action</title>
+
+    <style>
+        form {
+            width: 400px;
+            margin: 40px auto;
+            padding: 20px;
+            border: 1px solid #000;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 6px;
+            margin-top: 5px;
+        }
+
+        button {
+            margin-top: 15px;
+            padding: 8px;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+
+<h2 style="text-align:center">Ajouter une action</h2>
+
+<form th:action="@{/save}" th:object="${action}" method="post">
+
+    <label>Titre</label>
+    <input type="text" th:field="*{titre}" required>
+
+    <label>Description</label>
+    <textarea th:field="*{description}"></textarea>
+
+    <label>Date de création</label>
+    <input type="date" th:field="*{dateCreation}">
+
+    <label>Montant objectif (DH)</label>
+    <input type="number" th:field="*{montantobj}" step="0.01" min="0">
+
+    <label>Statut</label>
+    <select th:field="*{status}">
+        <option value="">-- Choisir un statut --</option>
+        <option th:value="EN_COURS">EN_COURS</option>
+        <option th:value="TERMINEE">TERMINEE</option>
+    </select>
+
+    <button type="submit">Enregistrer</button>
+
+</form>
+
+</body>
+</html>
