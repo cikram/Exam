@@ -1,4 +1,4 @@
-package ma.xproce.exam.Web;
+package ma.xproce.exam.web;
 
 import ma.xproce.exam.dao.entities.Action;
 import ma.xproce.exam.dao.entities.Don;
